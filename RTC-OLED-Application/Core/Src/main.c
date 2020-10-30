@@ -25,6 +25,8 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
+#include "ssd1306.h"
+#include <stdio.h>
 
 /* USER CODE END Includes */
 
@@ -45,6 +47,9 @@
 /* Private variables ---------------------------------------------------------*/
 
 /* USER CODE BEGIN PV */
+RTC_HandleTypeDef rtcHandle;
+RTC_TimeTypeDef currentTime;
+RTC_DateTypeDef currentDate;
 
 /* USER CODE END PV */
 
@@ -56,6 +61,8 @@ void SystemClock_Config(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
+void RTC_Config(void);
+void RTC_TimeDate_Config(void);
 
 /* USER CODE END 0 */
 
@@ -66,6 +73,8 @@ void SystemClock_Config(void);
 int main(void)
 {
   /* USER CODE BEGIN 1 */
+  char data[30];
+  char horario[30];
 
   /* USER CODE END 1 */
 
@@ -90,6 +99,9 @@ int main(void)
   MX_I2C1_Init();
   MX_RTC_Init();
   /* USER CODE BEGIN 2 */
+  SSD1306_Init();
+  RTC_Config();
+  RTC_TimeDate_Config();
 
   /* USER CODE END 2 */
 
@@ -97,9 +109,21 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-    /* USER CODE END WHILE */
+	  /* USER CODE END WHILE */
+		HAL_RTC_GetTime(&rtcHandle, &currentTime, RTC_FORMAT_BIN);
+		HAL_RTC_GetDate(&rtcHandle, &currentDate, RTC_FORMAT_BIN);
 
-    /* USER CODE BEGIN 3 */
+		/* Print current date and time (date time format: yyyy-MM-dd hh:mm:ss)*/
+		sprintf(data, "%0*i-%0*i-20%i", 2, currentDate.Date, 2, currentDate.Month, currentDate.Year);
+		SSD1306_GotoXY (0,0);
+		SSD1306_Puts (data, &Font_11x18, 1);
+		SSD1306_UpdateScreen(); // update display
+
+		sprintf(horario, "H:%0*i:%0*i:%0*i", 2, currentTime.Hours, 2, currentTime.Minutes, 2, currentTime.Seconds);
+		SSD1306_GotoXY (0,30);
+		SSD1306_Puts (horario, &Font_11x18, 1);
+		SSD1306_UpdateScreen(); // update display
+		HAL_Delay(1000);
   }
   /* USER CODE END 3 */
 }
@@ -151,7 +175,54 @@ void SystemClock_Config(void)
 }
 
 /* USER CODE BEGIN 4 */
+/**
+  * @brief  RTC configuration
+  * @param  None
+  * @retval None
+  */
+void RTC_Config(void)
+{
+	/*## STEP 1: Configure RTC ###############################################*/
+	rtcHandle.Instance          = RTC;
+	rtcHandle.Init.AsynchPrediv = RTC_AUTO_1_SECOND;
+	rtcHandle.Init.OutPut       = RTC_OUTPUTSOURCE_NONE;
+	if (HAL_RTC_Init(&rtcHandle) != HAL_OK)
+	{
+		Error_Handler();
+	}
+}
 
+/**
+  * @brief  Time and date configuration
+  * @param  None
+  * @retval None
+  */
+void RTC_TimeDate_Config(void)
+{
+	RTC_TimeTypeDef rtcTimeStruct;
+	RTC_DateTypeDef rtcDateStruct;
+
+	/*## STEP 1: Configure time ##############################################*/
+	/* Set time: 23:59:55 */
+	rtcTimeStruct.Hours   = 0x23;
+	rtcTimeStruct.Minutes = 0x59;
+	rtcTimeStruct.Seconds = 0x48;
+	if (HAL_RTC_SetTime(&rtcHandle, &rtcTimeStruct, RTC_FORMAT_BCD) != HAL_OK)
+	{
+		Error_Handler();
+	}
+
+	/*## STEP 2: Configure date ##############################################*/
+	/* Set date: 17/02/2020 */
+	rtcDateStruct.Year    = 0x20;
+	rtcDateStruct.Month   = RTC_MONTH_FEBRUARY;
+	rtcDateStruct.Date    = 0x17;
+	rtcDateStruct.WeekDay = RTC_WEEKDAY_MONDAY;
+	if(HAL_RTC_SetDate(&rtcHandle, &rtcDateStruct, RTC_FORMAT_BCD) != HAL_OK)
+	{
+		Error_Handler();
+	}
+}
 /* USER CODE END 4 */
 
 /**
