@@ -14,6 +14,7 @@ You can access the Application Note on the following link: [AN STM32’S INTERNA
 
 ## Contact the Authors
 Guilherme Amorim: `guilherme.vini65@gmail.com`
+
 Renan Guedes: `rbguedes1998@gmail.com`
 
 ## References
