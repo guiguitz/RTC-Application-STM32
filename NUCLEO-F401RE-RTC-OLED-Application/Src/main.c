@@ -14,6 +14,15 @@
   * License. You may obtain a copy of the License at:
   *                        opensource.org/licenses/BSD-3-Clause
   *
+  * Copyright (C) Guilherme Amorim, <guilherme.vini65@gmail.com>, 2020
+  * Copyright (C) Renan Guedes, <rbguedes1998@gmail.com>, 2020
+  *
+  * University: UFMG
+  *
+  * This API was developed as a work in the discipline of Embedded
+  * Systems Programming at UFMG - Prof. Ricardo de Oliveira Duarte -
+  * Department of Electronic Engineering
+  *
   ******************************************************************************
   */
 /* USER CODE END Header */
