@@ -10,7 +10,7 @@ Software examples dedicated to this application note are then detailed to show h
 You can download the OLED API on the followinh link: [STM32-Display-OLED-128x64-API](https://github.com/guiguitz/STM32-Display-OLED-128x64-API).
 
 ## AN STM32’S INTERNAL RTC
-You can access the Application Note on the following link: [AN STM32’S INTERNAL RTC]()
+You can access the Application Note on the following link: [AN STM32’S INTERNAL RTC](https://github.com/guiguitz/RTC-OLED-Application/blob/main/AN%20STM32%E2%80%99S%20INTERNAL%20RTC.pdf)
 
 ## Contact the Authors
 Guilherme Amorim: `guilherme.vini65@gmail.com`
