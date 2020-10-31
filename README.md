@@ -7,7 +7,7 @@ This Application was developed on STM32 Nucleo F401RE and STM32F103C8T6 board (B
 
 Software examples dedicated to this application note are then detailed to show how to handle the RTC feature for showing date and hour on a 128x64 OLED screen.
 
-You can download the OLED API on the followinh link: [STM32-Display-OLED-128x64-API](https://github.com/guiguitz/STM32-Display-OLED-128x64-API).
+You can download the OLED API on the following link: [STM32-Display-OLED-128x64-API](https://github.com/guiguitz/STM32-Display-OLED-128x64-API).
 
 ## AN STM32’S INTERNAL RTC
 You can access the Application Note on the following link: [AN STM32’S INTERNAL RTC](https://github.com/guiguitz/RTC-OLED-Application/blob/main/AN%20STM32%E2%80%99S%20INTERNAL%20RTC.pdf)
