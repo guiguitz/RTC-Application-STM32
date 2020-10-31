@@ -12,6 +12,11 @@ You can download the OLED API on the followinh link: [STM32-Display-OLED-128x64-
 ## AN STM32’S INTERNAL RTC
 You can access the Application Note on the following link: [AN STM32’S INTERNAL RTC]()
 
+## Contact the Authors
+Guilherme Amorim: `guilherme.vini65@gmail.com`
+
+Renan Guedes: `rbguedes1998@gmail.com`
+
 ## References
 * [RM0008](https://www.st.com/resource/en/reference_manual/CD00171190-.pdf)
 * [AN475](https://www.st.com/resource/en/application_note/dm00226326-using-the-hardware-realtime-clock-rtc-and-the-tamper-management-unit-tamp-with-stm32-microcontrollers-stmicroelectronics.pdf)
